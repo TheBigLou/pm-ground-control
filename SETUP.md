@@ -96,11 +96,44 @@ Used for project-level status updates in the daily summary.
 
 ### Jira
 
-> Community-contributed path — not validated against all Jira configurations. See CONTRIBUTING.md if you can help improve this.
+Uses the [official Atlassian Rovo MCP server](https://mcp.atlassian.com/v1/mcp) — cloud-hosted, OAuth-authenticated, covers Jira, Confluence, and Compass.
+
+**Prerequisites:** Node.js v18+, an Atlassian Cloud account.
+
+Add to your MCP config:
+
+```json
+{
+  "atlassian": {
+    "command": "npx",
+    "args": ["-y", "mcp-remote@latest", "https://mcp.atlassian.com/v1/mcp"]
+  }
+}
+```
+
+On first connection, a browser window will open for OAuth authentication. After that it stays authenticated. Your existing Jira permissions apply — the MCP can only access what you can access.
 
 ### Notion
 
-> Community-contributed path — not validated against all Notion configurations. See CONTRIBUTING.md if you can help improve this.
+Uses the [official Notion MCP server](https://github.com/makenotion/notion-mcp-server).
+
+Add to your MCP config:
+
+```json
+{
+  "notionApi": {
+    "command": "npx",
+    "args": ["-y", "@notionhq/notion-mcp-server"],
+    "env": {
+      "NOTION_TOKEN": "ntn_..."
+    }
+  }
+}
+```
+
+Get your token: go to [notion.so/profile/integrations](https://www.notion.so/profile/integrations), create an Internal Integration, and copy the secret (starts with `ntn_`). Then grant the integration access to the pages or databases you want it to read.
+
+> **Note:** Notion has signaled they may sunset this local server in favor of a remote OAuth-based server. It works today, but watch for changes if you upgrade.
 
 ### GitHub CLI
 

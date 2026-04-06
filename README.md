@@ -60,8 +60,8 @@ At the end of your next working day:
 | Slack | Full channel sweep, DMs, thread following | Required for Slack features |
 | Asana | Project-level status updates in daily summary | Optional |
 | Linear | Project-level status updates in daily summary | Optional |
-| Jira | Project-level status updates in daily summary | Optional; community-contributed path |
-| Notion | Project updates; weekly update output | Optional; community-contributed path |
+| Jira | Project-level status updates in daily summary | Optional; official Atlassian Rovo MCP |
+| Notion | Project updates; weekly update output | Optional; official Notion MCP |
 | GitHub CLI | PR sweep in daily summary | Optional |
 
 All integrations degrade gracefully — if an MCP isn't connected, that source is skipped and noted in the output.

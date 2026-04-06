@@ -13,9 +13,8 @@ pm-ground-control is an open-source project and contributions are welcome.
 - New skills (accomplishment logging, retrospective synthesis, etc.)
 
 **Integration support:**
-- Jira MCP integration in the daily-summary skill (currently a stub)
-- Notion MCP integration in the daily-summary skill (currently a stub)
 - Granola + Obsidian + Granola Sync setup walkthrough for SETUP.md
+- Validation of Jira and Notion integrations against real-world setups
 
 **Documentation:**
 - Setup walkthrough for your meeting notes tool
