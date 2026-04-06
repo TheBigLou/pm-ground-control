@@ -254,7 +254,13 @@ If yes, determine the config file path based on the AI agent chosen in Step 9:
 - **Codex:** `~/.agents/settings.json` — same structure
 - **Other:** ask the user for their MCP config file path
 
-Read the existing config file if it exists. If it doesn't exist, start with `{}`. Parse the JSON and locate or create the `mcpServers` object. Merge new entries in — do not overwrite any existing entries.
+Read the existing config file if it exists. If it doesn't exist, start with `{}`. Parse the JSON and locate or create the `mcpServers` object.
+
+**Before asking for any credentials, check what's already configured.** Scan the existing `mcpServers` entries for any that reference Slack (`slack.com`, `server-slack`), Asana (`server-asana`), Linear (`server-linear`), Atlassian (`mcp.atlassian.com`), or Notion (`notion-mcp-server`, `mcp.notion.com`). For each tool already present, tell the user:
+
+> "Slack MCP is already configured — skipping."
+
+Only ask for credentials for tools that are not already configured. Do not overwrite any existing entries.
 
 **Slack** (ask if user said yes to Slack in Step 2):
 
