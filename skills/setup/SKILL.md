@@ -81,7 +81,7 @@ Ask one at a time:
 1. "What's your name?"
 2. "What's your role? (e.g. Product Manager, Senior PM, Principal PM)"
 3. "What company do you work at?"
-4. If Slack: "What's your Slack user ID? Open your profile in Slack, click the three-dot menu → Copy link. Paste the link here and I'll extract the ID."
+4. If Slack: "What's your Slack user ID? Open your profile in Slack, click the three-dot menu → Copy link, and paste it here. I'll extract the ID — no need to find it manually."
 5. "Who is your manager? (name)"
 6. "What format do you prefer for your weekly update? (Slack post / email / Notion page / other)"
 7. "Who is the audience for your weekly update? (e.g. my manager, my team — or skip)"
@@ -96,7 +96,7 @@ For each team, ask one at a time:
 1. "What's the team name?"
 2. "Who is the engineering lead? (name)"
 3. "What does this team own? (brief description)"
-4. "What are the team's Slack channels? For each one, right-click the channel in Slack → Copy link, and paste the link here. I'll extract the channel IDs."
+4. "What are the team's Slack channels? For each one, paste the channel name and link — e.g. `#team-engineering: https://...`. The name is optional; the link is enough if you prefer."
 6. "Who are the key people on this team? List names and roles, one per line."
 
 After each team: "Add another team? (yes/no)"
@@ -110,7 +110,7 @@ After each team: "Add another team? (yes/no)"
 For each project, ask one at a time:
 1. "What's the project name?"
 2. "Which team does it belong to?"
-3. "Does it have a dedicated Slack channel? If yes, right-click the channel → Copy link and paste it here."
+3. "Does it have a dedicated Slack channel? If yes, paste the name and link — e.g. `#proj-example: https://...`. Name is optional; link alone is fine."
 4. "Do you track this in Asana, Linear, Jira, or Notion? If yes, paste the project URL."
 5. "Any notes about this project? (optional, press enter to skip)"
 
@@ -122,11 +122,14 @@ After each project: "Add another project? (yes/no)"
 
 > "Let's set up your Slack channel list. Tier 1 (full read) is automatically set from your project and team channels. Now let's add Tier 2 — broader channels you participate in that sometimes have useful signal."
 
-Ask: "List any Tier 2 channels. For each, right-click → Copy link and paste the link here. These might be cross-functional channels, broad product or engineering channels, or customer-facing channels."
+Ask: "List any Tier 2 channels. For each, paste the name and link — e.g. `#product: https://...`. Name is optional; link alone is fine. These might be cross-functional channels, broad product or engineering channels, or customer-facing channels."
 
-Ask: "Any Tier 3 channels? These are company-wide announcement channels you only need to scan for major news. Same — paste the Slack links."
+Ask: "Any Tier 3 channels? These are company-wide announcement channels you only need to scan for major news. Same format — name optional, link preferred."
 
-For any Slack link pasted, extract the channel ID from the URL. Slack channel links follow the pattern `https://{{workspace}}.slack.com/archives/{{CHANNEL_ID}}` and user profile links follow `https://{{workspace}}.slack.com/team/{{USER_ID}}`. Parse the final path segment as the ID.
+**Extracting IDs from Slack links:**
+- Channel links: `https://{{workspace}}.slack.com/archives/{{CHANNEL_ID}}` → extract the final path segment as the channel ID
+- User profile links: `https://{{workspace}}.slack.com/team/{{USER_ID}}` → extract the final path segment as the user ID
+- If only a link is provided and no name, use the ID as the identifier in memory files and note that the name can be resolved later via `slack_search_channels` or `slack_read_user_profile` once the Slack MCP is connected.
 
 ---
 
