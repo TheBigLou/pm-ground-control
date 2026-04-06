@@ -14,6 +14,8 @@ Clone this repo, run `/setup`, and your workspace is ready. At the end of each d
 | `/daily-summary` | End-of-day synthesis: meetings, Slack, PRs, project tracker updates, local files → structured daily note |
 | `/weekly-summary` | Synthesizes the week's daily notes into a single weekly summary |
 | `/weekly-update` | Drafts your stakeholder update from the weekly summary |
+| `/log-accomplishment` | Captures a career-relevant win to your accomplishments log with STAR framing |
+| `/accomplishments-review` | Synthesizes your log into resume bullets, interview stories, and performance review narrative |
 
 ---
 

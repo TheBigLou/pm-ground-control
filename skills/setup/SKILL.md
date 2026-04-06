@@ -232,6 +232,8 @@ Resolve the skills directory, then copy:
 cp -r {{REPO_PATH}}/skills/daily-summary {{SKILLS_DIR}}/
 cp -r {{REPO_PATH}}/skills/weekly-summary {{SKILLS_DIR}}/
 cp -r {{REPO_PATH}}/skills/weekly-update {{SKILLS_DIR}}/
+cp -r {{REPO_PATH}}/skills/log-accomplishment {{SKILLS_DIR}}/
+cp -r {{REPO_PATH}}/skills/accomplishments-review {{SKILLS_DIR}}/
 ```
 
 Note: the setup skill itself lives in the repo and is not copied — users re-run it by returning to the repo.
@@ -248,7 +250,7 @@ Output a summary:
 > **Teams:** {{TEAM_LIST}}
 > **Projects:** {{PROJECT_LIST}}
 > **Optional directories:** {{OPTIONAL_DIR_LIST or "none"}}
-> **Skills installed:** daily-summary, weekly-summary, weekly-update → `{{SKILLS_DIR}}`
+> **Skills installed:** daily-summary, weekly-summary, weekly-update, log-accomplishment, accomplishments-review → `{{SKILLS_DIR}}`
 >
 > **Next steps:**
 > 1. Connect your MCP tools (see SETUP.md for instructions): Slack{{, PROJECT_TRACKER_NAME if applicable}}
