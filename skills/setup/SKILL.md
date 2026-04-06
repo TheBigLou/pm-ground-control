@@ -12,6 +12,7 @@ Welcome to pm-ground-control. This skill will set up your workspace through a sh
 4. Create your workspace folder structure
 5. Populate your memory files
 6. Install the skills into your AI agent
+7. Optionally sort any existing files into the new structure
 
 This will take about 10-15 minutes. Let's start.
 
@@ -80,7 +81,7 @@ Ask one at a time:
 1. "What's your name?"
 2. "What's your role? (e.g. Product Manager, Senior PM, Principal PM)"
 3. "What company do you work at?"
-4. If Slack: "What's your Slack user ID? You can find this in Slack under your profile → More → Copy member ID. It looks like `U08B13F3YCX`."
+4. If Slack: "What's your Slack user ID? Open your profile in Slack, click the three-dot menu → Copy link. Paste the link here and I'll extract the ID."
 5. "Who is your manager? (name)"
 6. "What format do you prefer for your weekly update? (Slack post / email / Notion page / other)"
 7. "Who is the audience for your weekly update? (e.g. my manager, my team — or skip)"
@@ -95,8 +96,7 @@ For each team, ask one at a time:
 1. "What's the team name?"
 2. "Who is the engineering lead? (name)"
 3. "What does this team own? (brief description)"
-4. "What are the team's Slack channels? (list them)"
-5. For each channel named: "What's the channel ID for #{{channel}}? Right-click the channel in Slack → View channel details → scroll to bottom to find it."
+4. "What are the team's Slack channels? For each one, right-click the channel in Slack → Copy link, and paste the link here. I'll extract the channel IDs."
 6. "Who are the key people on this team? List names and roles, one per line."
 
 After each team: "Add another team? (yes/no)"
@@ -110,7 +110,7 @@ After each team: "Add another team? (yes/no)"
 For each project, ask one at a time:
 1. "What's the project name?"
 2. "Which team does it belong to?"
-3. "Does it have a dedicated Slack channel? If yes, what's the name and ID?"
+3. "Does it have a dedicated Slack channel? If yes, right-click the channel → Copy link and paste it here."
 4. "Do you track this in Asana, Linear, Jira, or Notion? If yes, paste the project URL."
 5. "Any notes about this project? (optional, press enter to skip)"
 
@@ -122,9 +122,11 @@ After each project: "Add another project? (yes/no)"
 
 > "Let's set up your Slack channel list. Tier 1 (full read) is automatically set from your project and team channels. Now let's add Tier 2 — broader channels you participate in that sometimes have useful signal."
 
-Ask: "List any Tier 2 channels (name and ID if you have it). These might be cross-functional channels, broad product or engineering channels, or customer-facing channels."
+Ask: "List any Tier 2 channels. For each, right-click → Copy link and paste the link here. These might be cross-functional channels, broad product or engineering channels, or customer-facing channels."
 
-Ask: "Any Tier 3 channels? These are company-wide announcement channels you only need to scan for major news."
+Ask: "Any Tier 3 channels? These are company-wide announcement channels you only need to scan for major news. Same — paste the Slack links."
+
+For any Slack link pasted, extract the channel ID from the URL. Slack channel links follow the pattern `https://{{workspace}}.slack.com/archives/{{CHANNEL_ID}}` and user profile links follow `https://{{workspace}}.slack.com/team/{{USER_ID}}`. Parse the final path segment as the ID.
 
 ---
 
@@ -258,3 +260,30 @@ Output a summary:
 > 4. Run `/daily-summary` at the end of your next working day
 >
 > You can re-run `/setup` at any time to add teams or projects."
+
+---
+
+## Step 11 — Organize existing files (optional)
+
+Ask: "Do you have existing files in this workspace that you'd like me to sort into the new folder structure? (yes/no)"
+
+If yes:
+
+1. **Survey what's there.** List all files and folders currently in `{{WORKSPACE_PATH}}` that are not part of the newly created structure (i.e., not daily-notes/, meeting-notes/, memory/, _accomplishments/, project folders, or any optional directories just created).
+
+2. **Present a proposed mapping.** For each item found, suggest a destination based on:
+   - File name, content keywords, and apparent type (spec, notes, GTM doc, reference, etc.)
+   - Project and team names from memory/projects.md
+   - Whether it fits a known project folder, a top-level optional directory, or should be left in place
+
+   Present the full mapping as a list before moving anything:
+   ```
+   [filename or folder] → [proposed destination]  (reason)
+   [filename or folder] → [leave in place]  (reason)
+   ```
+
+3. **Confirm before moving.** Ask: "Does this mapping look right? You can adjust any destination before I proceed."
+
+4. **Execute.** Move each confirmed item to its destination. Create any needed subdirectories. If a destination folder doesn't exist yet (e.g., a project folder for a project not listed in the interview), create it using the chosen template.
+
+5. **Report.** List every move made and any items left in place.
