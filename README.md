@@ -34,18 +34,25 @@ Clone this repo, run `/setup`, and your workspace is ready. At the end of each d
 
 ## Quick start
 
+### If you use a desktop app (Claude Code, Cursor, etc.)
+
+1. Click **Code → Download ZIP** at the top of this page
+2. Unzip it somewhere permanent — e.g. `~/Documents/pm-ground-control/`
+3. Open your AI agent and open the `pm-ground-control` folder as your working directory
+4. Type `/setup` and follow the interview
+
+That's it. `/setup` handles everything else — workspace creation, memory files, MCP configuration, and skill installation.
+
+### If you're comfortable with the terminal
+
 ```bash
 git clone https://github.com/TheBigLou/pm-ground-control.git
 cd pm-ground-control
 ```
 
-Then, in your AI agent session with this directory open:
+Then open the folder in your AI agent and run `/setup`.
 
-```
-/setup
-```
-
-Follow the interview (10-15 minutes). When it's done, your workspace is ready and skills are installed.
+---
 
 At the end of your next working day:
 

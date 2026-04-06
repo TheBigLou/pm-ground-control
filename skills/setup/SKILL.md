@@ -12,7 +12,8 @@ Welcome to pm-ground-control. This skill will set up your workspace through a sh
 4. Create your workspace folder structure
 5. Populate your memory files
 6. Install the skills into your AI agent
-7. Optionally sort any existing files into the new structure
+7. Optionally configure your MCP connections (no manual file editing required)
+8. Optionally sort any existing files into the new structure
 
 This will take about 10-15 minutes. Let's start.
 
@@ -244,6 +245,99 @@ Note: the setup skill itself lives in the repo and is not copied — users re-ru
 
 ---
 
+## Step 9b — Configure MCP connections (optional)
+
+Ask: "Would you like me to configure your MCP connections now? I can write the config for Slack and your project tracker so you don't have to edit any files manually. (yes / no / skip for now)"
+
+If yes, determine the config file path based on the AI agent chosen in Step 9:
+- **Claude Code:** `~/.claude/settings.json` — MCPs live under the `mcpServers` key
+- **Codex:** `~/.agents/settings.json` — same structure
+- **Other:** ask the user for their MCP config file path
+
+Read the existing config file if it exists. If it doesn't exist, start with `{}`. Parse the JSON and locate or create the `mcpServers` object. Merge new entries in — do not overwrite any existing entries.
+
+**Slack** (ask if user said yes to Slack in Step 2):
+
+> "To configure Slack, I need two things:
+> 1. Your Slack bot token — create a Slack app at api.slack.com/apps, add OAuth scopes (channels:history, channels:read, groups:history, groups:read, im:history, im:read, mpim:history, search:read, users:read), install it to your workspace, and copy the Bot User OAuth Token (starts with `xoxb-`)
+> 2. Your Slack Team ID — it's the part of your Slack workspace URL before `.slack.com`, or find it at api.slack.com/methods/auth.test. It starts with `T`.
+>
+> Paste both here."
+
+Add to config:
+```json
+"slack": {
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-slack"],
+  "env": {
+    "SLACK_BOT_TOKEN": "{{token}}",
+    "SLACK_TEAM_ID": "{{team_id}}"
+  }
+}
+```
+
+**Asana** (if user selected Asana in Step 2):
+
+> "For Asana, paste your personal access token. Generate one at app.asana.com/0/my-apps → Create new token."
+
+Add to config:
+```json
+"asana": {
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-asana"],
+  "env": {
+    "ASANA_ACCESS_TOKEN": "{{token}}"
+  }
+}
+```
+
+**Linear** (if user selected Linear in Step 2):
+
+> "For Linear, paste your API key. Generate one at linear.app/settings/api → Personal API keys."
+
+Add to config:
+```json
+"linear": {
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-linear"],
+  "env": {
+    "LINEAR_API_KEY": "{{key}}"
+  }
+}
+```
+
+**Jira** (if user selected Jira in Step 2):
+
+No token needed — uses OAuth. Add to config:
+```json
+"atlassian": {
+  "command": "npx",
+  "args": ["-y", "mcp-remote@latest", "https://mcp.atlassian.com/v1/mcp"]
+}
+```
+
+Tell the user: "Jira is configured. The first time you use it, a browser window will open to complete sign-in."
+
+**Notion** (if user selected Notion in Step 2):
+
+No token needed — uses OAuth. Add to config:
+```json
+"notion": {
+  "command": "npx",
+  "args": ["-y", "@notionhq/notion-mcp-server"]
+}
+```
+
+Tell the user: "Notion is configured. The first time you use it, you'll be prompted to sign in."
+
+**After writing the config file:**
+
+> "MCP connections written to `{{CONFIG_PATH}}`. Restart your AI agent session to pick them up, then run `/daily-summary` at the end of your next working day."
+
+If the user skips this step, note it in the Step 10 summary under Next steps.
+
+---
+
 ## Step 10 — Confirm
 
 Output a summary:
@@ -257,7 +351,8 @@ Output a summary:
 > **Skills installed:** daily-summary, weekly-summary, weekly-update, log-accomplishment, accomplishments-review → `{{SKILLS_DIR}}`
 >
 > **Next steps:**
-> 1. Connect your MCP tools (see SETUP.md for instructions): Slack{{, PROJECT_TRACKER_NAME if applicable}}
+> {{If MCP was configured in Step 9b: "1. Restart your AI agent session to load the MCP connections."}}
+> {{If MCP was skipped: "1. Connect your MCP tools manually — see SETUP.md for instructions."}}
 > 2. Configure {{MEETING_NOTES_TOOL}} to export transcripts to `{{WORKSPACE_PATH}}/meeting-notes/YYYY-MM-DD/`
 > 3. Configure {{DAILY_NOTES_TOOL}} to save daily notes to `{{WORKSPACE_PATH}}/daily-notes/YYYY/MM/YYYY-MM-DD.md`
 > 4. Run `/daily-summary` at the end of your next working day
