@@ -115,25 +115,34 @@ On first connection, a browser window will open for OAuth authentication. After 
 
 ### Notion
 
-Uses the [official Notion MCP server](https://github.com/makenotion/notion-mcp-server).
+Notion's recommended approach is their remote MCP server with OAuth — no API token required.
+
+**Claude Code (recommended):**
+
+```bash
+claude mcp add --transport http notion https://mcp.notion.com/mcp
+```
+
+Then run `/mcp` in your Claude Code session and complete the OAuth flow in the browser. Your Notion workspace permissions apply automatically.
+
+Optionally, install the [official Notion plugin for Claude Code](https://developers.notion.com/guides/mcp/mcp) for pre-built skills and slash commands on top of the MCP connection.
+
+**Other AI agents:**
 
 Add to your MCP config:
 
 ```json
 {
-  "notionApi": {
-    "command": "npx",
-    "args": ["-y", "@notionhq/notion-mcp-server"],
-    "env": {
-      "NOTION_TOKEN": "ntn_..."
-    }
+  "notion": {
+    "url": "https://mcp.notion.com/mcp",
+    "type": "http"
   }
 }
 ```
 
-Get your token: go to [notion.so/profile/integrations](https://www.notion.so/profile/integrations), create an Internal Integration, and copy the secret (starts with `ntn_`). Then grant the integration access to the pages or databases you want it to read.
+Authenticate via OAuth when prompted.
 
-> **Note:** Notion has signaled they may sunset this local server in favor of a remote OAuth-based server. It works today, but watch for changes if you upgrade.
+> **Note:** File and image uploads are not currently supported in Notion MCP.
 
 ### GitHub CLI
 
