@@ -204,6 +204,7 @@ cp {{REPO_PATH}}/templates/memory/projects.md {{WORKSPACE_PATH}}/memory/projects
 cp {{REPO_PATH}}/templates/memory/teams.md {{WORKSPACE_PATH}}/memory/teams.md
 cp {{REPO_PATH}}/templates/memory/slack-channels.md {{WORKSPACE_PATH}}/memory/slack-channels.md
 cp {{REPO_PATH}}/templates/memory/people-signal.md {{WORKSPACE_PATH}}/memory/people-signal.md
+cp {{REPO_PATH}}/templates/memory/custom-sources.md {{WORKSPACE_PATH}}/memory/custom-sources.md
 ```
 
 After copying, edit each file to replace all `{{placeholders}}` with actual values from the interview. Do not leave any placeholders — if the user didn't provide a value, use `—`.
@@ -220,6 +221,7 @@ Create `{{WORKSPACE_PATH}}/memory/MEMORY.md`:
 - [Teams reference](teams.md) — people, roles, ownership for all teams
 - [Slack channels](slack-channels.md) — three-tier channel list for daily summary sweeps
 - [High-signal Slack people](people-signal.md) — prioritized in daily summaries; updated each run
+- [Custom sources](custom-sources.md) — additional data sources checked in every daily summary; add entries with /add-source
 ```
 
 ---
@@ -239,6 +241,7 @@ cp -r {{REPO_PATH}}/skills/weekly-summary {{SKILLS_DIR}}/
 cp -r {{REPO_PATH}}/skills/weekly-update {{SKILLS_DIR}}/
 cp -r {{REPO_PATH}}/skills/log-accomplishment {{SKILLS_DIR}}/
 cp -r {{REPO_PATH}}/skills/accomplishments-review {{SKILLS_DIR}}/
+cp -r {{REPO_PATH}}/skills/add-source {{SKILLS_DIR}}/
 ```
 
 Note: the setup skill itself lives in the repo and is not copied — users re-run it by returning to the repo.
@@ -354,7 +357,7 @@ Output a summary:
 > **Teams:** {{TEAM_LIST}}
 > **Projects:** {{PROJECT_LIST}}
 > **Optional directories:** {{OPTIONAL_DIR_LIST or "none"}}
-> **Skills installed:** daily-summary, weekly-summary, weekly-update, log-accomplishment, accomplishments-review → `{{SKILLS_DIR}}`
+> **Skills installed:** daily-summary, weekly-summary, weekly-update, log-accomplishment, accomplishments-review, add-source → `{{SKILLS_DIR}}`
 >
 > **Next steps:**
 > {{If MCP was configured in Step 9b: "1. Restart your AI agent session to load the MCP connections."}}

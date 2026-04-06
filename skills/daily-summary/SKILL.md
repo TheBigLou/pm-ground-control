@@ -134,6 +134,29 @@ Return: files modified today with path, type, project, and summary. If none, ret
 
 ---
 
+### Subagent E — Custom sources (conditional)
+
+Read `memory/custom-sources.md`. If the file is empty or contains no entries outside the comment block, skip this subagent entirely and return nothing.
+
+For each entry in the file:
+
+1. Note the source name, type, access pattern, extract instructions, filter, and relevance scope.
+2. Apply the filter:
+   - `today` — only content from today
+   - `since-last-working-day` — today and the previous working day
+   - `always` — no date filter
+3. Execute the access pattern:
+   - **mcp:** call the specified tool with the specified parameters
+   - **cli:** run the command via Bash
+   - **local-files:** glob the path, read matching files modified within the filter window
+   - **http:** fetch the URL with the specified method and headers
+4. Extract what the entry specifies. Use Phase 1 context to filter for relevance — if the entry is scoped to specific projects, only include signals that touch those projects.
+5. Discard empty results silently.
+
+Return: findings grouped by source name, with a brief summary per item. If a source errors or returns nothing, note it briefly and continue.
+
+---
+
 ## Step 1 — To-do verification pass
 
 For every candidate to-do item, assign one of:

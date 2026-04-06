@@ -16,6 +16,7 @@ Clone this repo, run `/setup`, and your workspace is ready. At the end of each d
 | `/weekly-update` | Drafts your stakeholder update from the weekly summary |
 | `/log-accomplishment` | Captures a career-relevant win to your accomplishments log with STAR framing |
 | `/accomplishments-review` | Synthesizes your log into resume bullets, interview stories, and performance review narrative |
+| `/add-source` | Adds a new data source to your daily summary — MCP tools, CLI commands, local files, or HTTP endpoints |
 
 ---
 
