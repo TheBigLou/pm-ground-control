@@ -16,7 +16,7 @@ Clone this repo, run `/setup`, and your workspace is ready. At the end of each d
 | `/weekly-update` | Drafts your stakeholder update from the weekly summary |
 | `/log-accomplishment` | Captures a career-relevant win to your accomplishments log with STAR framing |
 | `/accomplishments-review` | Synthesizes your log into resume bullets, interview stories, and performance review narrative |
-| `/add-source` | Adds a new data source to your daily summary — MCP tools, CLI commands, local files, or HTTP endpoints |
+| `/add-source` | Adds a new data source to your daily summary: MCP tools, CLI commands, local files, or HTTP endpoints |
 
 ---
 
@@ -27,7 +27,7 @@ Clone this repo, run `/setup`, and your workspace is ready. At the end of each d
 - Optionally: Asana, Linear, Jira, or Notion MCP for project tracker updates
 
 **Recommended stack:**
-- **Meeting notes:** [Granola](https://granola.ai) + [Obsidian](https://obsidian.md) + [Granola Sync community plugin](https://github.com/Quorafind/obsidian-granola) — auto-exports transcripts to local markdown. See [SETUP.md](SETUP.md) for walkthrough.
+- **Meeting notes:** [Granola](https://granola.ai) + [Obsidian](https://obsidian.md) + [Granola Sync community plugin](https://github.com/Quorafind/obsidian-granola) = auto-export transcripts to local markdown. See [SETUP.md](SETUP.md) for walkthrough.
 - **Daily notes:** Obsidian
 - **Project tracker:** Asana or Linear (both supported out of the box)
 
