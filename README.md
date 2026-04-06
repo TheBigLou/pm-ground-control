@@ -2,7 +2,7 @@
 
 AI-powered daily operating system for product managers.
 
-Clone this repo, run `/setup`, and your workspace is ready. At the end of each day, run `/daily-summary` to get a structured synthesis of your meetings, Slack, and project activity — written directly to your daily note.
+Clone this repo, run `/setup`, and your workspace is ready. At the end of each day, run `/daily-summary` to get a structured synthesis of your meetings, Slack, and project activity written directly to your daily note. Use the other skills weekly and/or as needed.
 
 ---
 
@@ -21,7 +21,7 @@ Clone this repo, run `/setup`, and your workspace is ready. At the end of each d
 
 ## Prerequisites
 
-- An AI agent that supports skills: [Claude Code](https://claude.ai/code), Codex, or Gemini CLI
+- An AI agent that supports skills: [Claude Code](https://claude.ai/code), [Codex]([url](https://openai.com/codex/)), or [Gemini CLI]([url](https://geminicli.com/))
 - [Slack MCP](https://github.com/modelcontextprotocol/servers) connected to your agent (required for Slack sweep)
 - Optionally: Asana, Linear, Jira, or Notion MCP for project tracker updates
 
@@ -76,7 +76,7 @@ See [SETUP.md](SETUP.md) for connection instructions.
 
 Your **workspace** (notes, project files, memory) lives outside the repo at a path you choose during setup. This keeps your personal data private and makes skill updates simple: pull the repo, re-run install.
 
-**Memory files** in your workspace hold your configuration: who you are, what projects you own, your team, your Slack channels. Skills read these files at runtime — nothing is hardcoded.
+**Memory files** in your workspace hold your configuration: who you are, what projects you own, your team, your Slack channels. Skills read these files at runtime. Nothing is hardcoded.
 
 To update your skills when new versions ship:
 
