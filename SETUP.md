@@ -8,31 +8,46 @@ This guide covers everything you need to configure before running `/setup` — a
 
 The recommended setup auto-exports your Granola meeting transcripts to local markdown files, organized by date. This is what the `daily-summary` skill reads.
 
-> **Note:** If you use a different meeting notes tool, skip to the folder structure section below and configure your export path manually.
+> **Note:** If you use a different meeting notes tool, skip to section 2 and configure your export path manually during `/setup`.
 
-### What you need
-- [Granola](https://granola.ai) — AI meeting recorder (Mac)
-- [Obsidian](https://obsidian.md) — local markdown editor
-- [Granola Sync community plugin](https://github.com/Quorafind/obsidian-granola) — syncs Granola transcripts to Obsidian
+### Install in this order
 
-### Setup steps
+1. **[Granola](https://granola.ai)** — AI meeting recorder (Mac). Records and transcribes your meetings automatically.
 
-*(Granola + Obsidian + Granola Sync walkthrough to be added — if you use this stack and want to contribute setup instructions, see CONTRIBUTING.md)*
+2. **[Obsidian](https://obsidian.md)** — local markdown editor. Your workspace folder (chosen during `/setup`) should be your Obsidian vault, or inside it.
 
-### Expected output format
+3. **[Granola Sync](obsidian://show-plugin?id=granola-sync)** — Obsidian community plugin ([GitHub](https://github.com/tomelliot/obsidian-granola-sync)). Open Obsidian → Settings → Community plugins → Browse → search "Granola Sync" → Install → Enable.
 
-After setup, your meeting notes should appear as:
+### Configure Granola Sync
+
+Open the Granola Sync plugin settings and set:
+
+| Setting | Value |
+|---|---|
+| Periodic sync | Enabled (recommended: every 300 seconds) |
+| Sync notes | Off (Granola's own AI summaries — enable if you prefer them or write notes during meetings) |
+| Sync transcripts | On |
+| Transcript handling | Custom location |
+| Transcript base folder | `meeting-notes` |
+| Transcript subfolder organization | By day (`YYYY-MM-DD`) |
+| Transcript filename pattern | `{title}` |
+
+After saving, run **Sync all** once to pull your full meeting history.
+
+### Expected output
+
+Meetings appear as one file per meeting:
 
 ```
 {{WORKSPACE}}/meeting-notes/
   2026-04-07/
     Team standup.md
-    1_1 with manager.md
+    1:1 with manager.md
   2026-04-08/
     Product review.md
 ```
 
-Each file should have a YAML frontmatter block with a `created` field (timestamp). The `daily-summary` skill uses this for meeting times.
+Each file includes YAML frontmatter with a `created` timestamp. The `daily-summary` skill uses this for meeting times.
 
 ---
 
