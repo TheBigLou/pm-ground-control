@@ -95,6 +95,12 @@ git pull
 
 ---
 
+## Setup
+
+See [SETUP.md](SETUP.md) for detailed setup instructions.
+
+---
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
