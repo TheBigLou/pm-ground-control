@@ -137,6 +137,22 @@ Ask: "Any Tier 3 channels? These are company-wide announcement channels you only
 
 ---
 
+## Step 7b — Optional top-level directories
+
+> "A few optional top-level directories can be useful alongside your project folders. Tell me which you'd like included:
+>
+> - `_accomplishments/` — a running log of meaningful wins, decisions, and shipped work; used by the accomplishments skills for perf reviews and interview prep
+> - `_explorations/` — research and side investigations not tied to a specific project
+> - `_reference/` — reference materials, downloaded docs, third-party context
+> - `_strategy/` — strategic thinking, vision docs, and planning artifacts
+> - `_templates/` — reusable document templates (PRDs, briefs, specs)
+>
+> Which would you like? (list them, or say 'all' or 'none')"
+
+Record the user's choices — they get created in Step 8.
+
+---
+
 ## Step 8 — Create workspace
 
 Using all interview responses, create the workspace.
@@ -147,6 +163,16 @@ Using all interview responses, create the workspace.
 mkdir -p {{WORKSPACE_PATH}}/daily-notes
 mkdir -p {{WORKSPACE_PATH}}/meeting-notes
 mkdir -p {{WORKSPACE_PATH}}/memory
+```
+
+**Optional directories** — create each one the user selected in Step 7b:
+
+```bash
+mkdir -p {{WORKSPACE_PATH}}/_accomplishments   # if selected
+mkdir -p {{WORKSPACE_PATH}}/_explorations      # if selected
+mkdir -p {{WORKSPACE_PATH}}/_reference         # if selected
+mkdir -p {{WORKSPACE_PATH}}/_strategy          # if selected
+mkdir -p {{WORKSPACE_PATH}}/_templates         # if selected
 ```
 
 **Project folders** — for each team and project (using the chosen template):
@@ -221,6 +247,7 @@ Output a summary:
 > **Workspace:** `{{WORKSPACE_PATH}}`
 > **Teams:** {{TEAM_LIST}}
 > **Projects:** {{PROJECT_LIST}}
+> **Optional directories:** {{OPTIONAL_DIR_LIST or "none"}}
 > **Skills installed:** daily-summary, weekly-summary, weekly-update → `{{SKILLS_DIR}}`
 >
 > **Next steps:**
