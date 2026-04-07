@@ -1,33 +1,101 @@
 # pm-ground-control
 
-AI-powered daily operating system for product managers.
+Your meeting transcripts, Slack threads, and project activity — synthesized into structured daily notes, weekly summaries, and a running career log. Automatically, every day.
 
-Clone this repo, run `/setup`, and your workspace is ready. At the end of each day, run `/daily-summary` to get a structured synthesis of your meetings, Slack, and project activity written directly to your daily note. Use the other skills weekly and/or as needed.
+pm-ground-control is a set of AI skills for product managers. Connect it to your meeting transcription tool and Slack, and at the end of each day your AI agent reads everything that happened, writes a structured summary to your daily note, carries forward open action items, and logs anything worth remembering for your next performance review.
+
+Nothing gets lost. Nothing gets double-entered.
 
 ---
 
-## What you get
+## What it does
 
-| Skill | What it does |
-|---|---|
-| `/setup` | One-time onboarding: creates your workspace, populates memory files, installs skills |
-| `/daily-summary` | End-of-day synthesis: meetings, Slack, PRs, project tracker updates, local files → structured daily note |
-| `/weekly-summary` | Synthesizes the week's daily notes into a single weekly summary |
-| `/weekly-update` | Drafts your stakeholder update from the weekly summary |
-| `/log-accomplishment` | Captures a career-relevant win to your accomplishments log with STAR framing |
-| `/accomplishments-review` | Synthesizes your log into resume bullets, interview stories, and performance review narrative |
-| `/add-source` | Adds a new data source to your daily summary: MCP tools, CLI commands, local files, or HTTP endpoints |
+At the end of each day, run `/daily-summary`. Your agent:
+
+1. Reads every meeting transcript from today
+2. Sweeps your Slack channels and DMs for decisions, action items, and signals relevant to your projects
+3. Checks your project tracker for status updates
+4. Scans any docs or specs you edited
+5. Writes a structured daily note — decisions made, open questions, to-dos, and a narrative of what actually mattered
+
+At the end of each week, `/weekly-summary` synthesizes the daily notes into a single weekly view. `/weekly-update` drafts your stakeholder update from that. `/log-accomplishment` captures a win to your career log in STAR format. `/accomplishments-review` turns the log into resume bullets and review narratives when you need them.
+
+---
+
+## What gets created on your computer
+
+Setup creates a workspace folder at a path you choose — separate from the repo, so your notes stay private. Here's what it looks like:
+
+```
+~/Documents/WorkNotes/
+├── daily-notes/
+│   └── 2026/
+│       ├── 04/
+│       │   └── 2026-04-03.md       ← written by /daily-summary each day
+│       └── W14/
+│           └── 2026-W14.md         ← written by /weekly-summary each week
+├── meeting-notes/
+│   └── 2026-04-03/
+│       ├── Onboarding v2 Kickoff.md
+│       ├── Product _ Eng Sync.md   ← auto-exported by Granola
+│       └── API Rate Limiting RFC Review.md
+├── memory/
+│   ├── me.md                       ← your identity, tools, and preferences
+│   ├── projects.md                 ← active projects with Slack + tracker links
+│   ├── teams.md                    ← people, roles, and ownership
+│   ├── slack-channels.md           ← channel list with tier weights
+│   ├── people-signal.md            ← high-signal people prioritized in sweeps
+│   └── custom-sources.md           ← additional sources for daily summary
+├── _accomplishments/
+│   └── 2026.md                     ← running career log, updated by /log-accomplishment
+├── _explorations/                  ← research and investigations
+├── _reference/                     ← downloaded docs, third-party context
+├── _strategy/                      ← vision docs and planning artifacts
+├── growth/
+│   └── onboarding-v2/
+│       ├── specs/
+│       ├── notes/
+│       ├── gtm/
+│       ├── prototypes/
+│       └── external.md             ← customer quotes, competitor notes
+└── platform/
+    └── data-pipeline-migration/
+        ├── specs/
+        ├── notes/
+        ├── gtm/
+        └── prototypes/
+```
+
+Project folders are organized by team, with a consistent structure for specs, notes, GTM docs, and prototypes. `/setup` creates all of this from an interview — no manual configuration.
+
+<!-- screenshot: sample-workspace directory tree -->
+<!-- screenshot: example daily note -->
+<!-- screenshot: example accomplishments log -->
+
+---
+
+## Skills
+
+| Skill | When to run | What it does |
+|---|---|---|
+| `/setup` | Once | Creates your workspace, populates memory files, installs skills, configures MCP connections |
+| `/daily-summary` | End of each day | Reads transcripts, Slack, PRs, and tracker updates → structured daily note with to-dos |
+| `/weekly-summary` | End of each week | Synthesizes daily notes into a weekly view |
+| `/weekly-update` | Weekly | Drafts your stakeholder update from the weekly summary |
+| `/log-accomplishment` | As wins happen | Captures a career-relevant win to your log in STAR format |
+| `/accomplishments-review` | Review season | Synthesizes your log into resume bullets and review narratives |
+| `/add-source` | As needed | Adds a new data source (MCP, CLI, file path, HTTP endpoint) to your daily summary |
 
 ---
 
 ## Prerequisites
 
-- An AI agent that supports skills: [Claude Code](https://claude.ai/code), [Codex]([url](https://openai.com/codex/)), or [Gemini CLI]([url](https://geminicli.com/))
+- An AI agent that supports skills: [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex/), or [Gemini CLI](https://geminicli.com/)
 - [Slack MCP](https://github.com/modelcontextprotocol/servers) connected to your agent (required for Slack sweep)
 - Optionally: Asana, Linear, Jira, or Notion MCP for project tracker updates
 
 **Recommended stack:**
-- **Meeting notes:** [Granola](https://granola.ai) + [Obsidian](https://obsidian.md) + [Granola Sync community plugin](https://github.com/Quorafind/obsidian-granola) = auto-export transcripts to local markdown. See [SETUP.md](SETUP.md) for walkthrough.
+- **Meeting transcription:** [Granola](https://granola.ai) + [Obsidian](https://obsidian.md) + [Granola Sync community plugin](https://github.com/Quorafind/obsidian-granola) — auto-exports transcripts to local markdown after every meeting, no manual steps
 - **Daily notes:** Obsidian
 - **Project tracker:** Asana or Linear (both supported out of the box)
 
@@ -42,7 +110,7 @@ Clone this repo, run `/setup`, and your workspace is ready. At the end of each d
 3. Open your AI agent and open the `pm-ground-control` folder as your working directory
 4. Type `/setup` and follow the interview
 
-That's it. `/setup` handles everything else — workspace creation, memory files, MCP configuration, and skill installation.
+`/setup` handles everything else: workspace creation, memory files, MCP configuration, and skill installation. It takes about 10–15 minutes.
 
 ### If you're comfortable with the terminal
 
@@ -92,12 +160,6 @@ To update your skills when new versions ship:
 git pull
 /setup  # Re-run the install step (step 9) to copy updated skills
 ```
-
----
-
-## Setup
-
-See [SETUP.md](SETUP.md) for detailed setup instructions.
 
 ---
 
