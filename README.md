@@ -18,7 +18,7 @@ At the end of each day, run `/daily-summary`. Your agent:
 4. Scans any docs or specs you edited
 5. Writes a structured daily note — decisions made, open questions, to-dos, and a narrative of what actually mattered
 
-At the end of each week, `/weekly-summary` synthesizes the daily notes into a single weekly view. `/weekly-update` drafts your stakeholder update from that. `/log-accomplishment` captures a win to your career log in STAR format. `/accomplishments-review` turns the log into resume bullets and review narratives when you need them.
+At the end of each week, `/weekly-summary` synthesizes the daily notes into a single weekly view. `/weekly-update` drafts your stakeholder update from that. `/log-accomplishment` captures a win to your career log in STAR format. `/accomplishments-review` combs through your weekly summaries and accomplishments log to create resume bullets and performance review narratives when you need them.
 
 ---
 
@@ -95,7 +95,7 @@ Project folders are organized by team, with a consistent structure for specs, no
 - Optionally: Asana, Linear, Jira, or Notion MCP for project tracker updates
 
 **Recommended stack:**
-- **Meeting transcription:** [Granola](https://granola.ai) + [Obsidian](https://obsidian.md) + [Granola Sync community plugin](https://github.com/Quorafind/obsidian-granola) — auto-exports transcripts to local markdown after every meeting, no manual steps
+- **Meeting transcription:** [Granola](https://granola.ai) + [Obsidian](https://obsidian.md) + [Granola Sync community plugin](https://github.com/Quorafind/obsidian-granola) = auto-exports transcripts to local markdown after every meeting, no manual steps
 - **Daily notes:** Obsidian
 - **Project tracker:** Asana or Linear (both supported out of the box)
 
