@@ -2,9 +2,7 @@
 
 Your meeting transcripts, Slack threads, and project activity — synthesized into structured daily notes, weekly summaries, and a running career log. Automatically, every day.
 
-pm-ground-control is a set of AI skills for product managers. Connect it to your meeting transcription tool and Slack, and at the end of each day your AI agent reads everything that happened, writes a structured summary to your daily note, carries forward open action items, and logs anything worth remembering for your next performance review.
-
-Nothing gets lost. Nothing gets double-entered.
+`pm-ground-control` is a set of AI skills for product managers. Connect it to your meeting transcription tool and Slack, and at the end of each day your AI agent reads everything that happened, writes a structured summary to your daily note, carries forward open action items, and logs anything worth remembering for your next performance review.
 
 ---
 
