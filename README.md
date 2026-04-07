@@ -68,9 +68,10 @@ Setup creates a workspace folder at a path you choose — separate from the repo
 
 Project folders are organized by team, with a consistent structure for specs, notes, GTM docs, and prototypes. `/setup` creates all of this from an interview — no manual configuration.
 
-<!-- screenshot: sample-workspace directory tree -->
-<!-- screenshot: example daily note -->
-<!-- screenshot: example accomplishments log -->
+<img width="787.5" height="695.5" alt="daily-note" src="https://github.com/user-attachments/assets/117c83e6-d28b-408a-afae-87025e4989e2" />
+<img width="787.5" height="695.5" alt="weekly-note" src="https://github.com/user-attachments/assets/4f80521b-076e-499b-9f20-af4331949803" />
+<img width="787.5" height="506.5" alt="accomplishment-log" src="https://github.com/user-attachments/assets/cac79241-2257-42e6-a72d-32b6bbefb508" />
+
 
 ---
 
